@@ -17,14 +17,14 @@
 <body>
 
   <form action="/plane/add" method="post">
-    <input type="text"  name="date_flight" placeholder="enter date1"><br>
-    <input type="text"  name="time_flight"><br>
+    <input type="date" name="date_flight" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"><br>
+    <input type="time"  name="time_flight" step=1><br>
     <input type="text"  name="town"><br>
     <input type="text" name="airport1"><br>
     <input type="number"  name="distance"><br>
     <input type="text" name="airport2"><br>
-    <input type="text" name="date2"><br>
-    <input type="text" name="time2"><br>
+    <input type="date" name="date2" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"><br>
+    <input type="time" name="time2" step=1><br>
     <input type="number"  name="count_transfer"><br>
     <input type="text" name="type_ticket"><br>
     <input type="text" name="price_ticket"><br>

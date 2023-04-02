@@ -4,7 +4,10 @@ import com.example.demo.observer.Observed;
 import com.example.demo.observer.Observer;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 @Entity
@@ -19,9 +22,11 @@ public class Plane  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_flight;
     @Column(name="date_flight")
-    private String date_flight;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
+    private Date date_flight;
     @Column(name="time_flight")
-    private String time_flight;
+    private Time time_flight;
     @Column(name="town")
     private String town;
     @Column(name="airport1")
@@ -31,9 +36,11 @@ public class Plane  {
     @Column(name="airport2")
     private String airport2;
     @Column(name="date2")
-    private String date2;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "YYYY-MM-DD")
+    private Date date2;
     @Column(name="time2")
-    private String time2;
+    private Time time2;
     @Column(name="count_transfer")
     private int count_transfer;
     @Column(name="type_ticket")
