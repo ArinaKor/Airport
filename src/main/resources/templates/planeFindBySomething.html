@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Position Report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--<link rel="stylesheet" href="/style/style.css">-->
+    <link rel="stylesheet" href="../static/style/style.css">
+
+    <style>
+        body{
+            background-color: cornflowerblue;
+            font-family: "Sitka Display";
+        }
+        div .airport{
+            display: flex;
+            flex-direction: row;
+            /*justify-content: center;*/
+            flex-wrap: nowrap;
+            align-content: center;
+            align-items: center;
+
+        }
+    </style>
+</head>
+<body>
+
+<form action="/plane/findSomething" method="post">
+    <fieldset>
+        <legend>Please select your preferred contact method:</legend>
+        <div>
+            <input type="radio" id="contactChoice1" name="contact" value="1" />
+            <label for="contactChoice1">Find By Town</label>
+
+            <input type="radio" id="contactChoice2" name="contact" value="2" />
+            <label for="contactChoice2">Find By Airport1</label>
+
+            <input type="radio" id="contactChoice3" name="contact" value="3" />
+            <label for="contactChoice3">Find By Airport2</label>
+        </div>
+        <div>
+            <input type="text" name="town">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </fieldset>
+</form>
+<h1 th:text="${notFound}"></h1>
+<div ><!--th:each="ac : ${list}"-->
+
+    <h2>Current Aircraft Positions</h2>
+    <div th:each="ac : ${list}">
+        <p th:text="${ac.id_flight}"></p>
+        <div class="airport">
+            <p th:text="${ac.date_flight}"></p>:
+            <p th:text="${ac.time_flight}"></p>
+        </div>
+        <!-- <p th:text="${ac.town}"></p>-->
+        <div class="airport"> <p th:text="${ac.airport1}"></p>-><p th:text="${ac.airport2}"></p></div>
+        <!-- <p th:text="${ac.distance}"></p>-->
+        <div class="airport">
+            <p th:text="${ac.date2}"></p>:
+            <p th:text="${ac.time2}"></p></div>
+        <a th:href="'/plane/'+${ac.id_flight}">More information</a>
+        <form th:action="'/plane/'+${ac.id_flight}+'/delete'" method="post">
+            <button type="submit">Buy Ticket</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Position Report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--<link rel="stylesheet" href="/style/style.css">-->
+
+
+    <style>
+        body{
+           /*
+            background-repeat: no-repeat;
+            background-size: cover;*/
+            font-family: "Sitka Display";
+        }
+        div .airport{
+            display: flex;
+            flex-direction: row;
+            /*justify-content: center;*/
+            flex-wrap: nowrap;
+            align-content: center;
+            align-items: center;
+
+        }
+        img{
+            width: 500px;
+        }
+    </style>
+
+
+</head>
+<body>
+<img th:src="@{../static/img/airport.jpg}">
+<div ><!--th:each="ac : ${list}"-->
+    <h2>Current Aircraft Positions</h2>
+    <div th:each="ac : ${list}">
+        <p th:text="${ac.id_flight}"/>
+        <div class="airport">
+        <p th:text="${ac.date_flight}"/><span>:</span>
+        <p th:text="${ac.time_flight}"/>
+        </div>
+       <!-- <p th:text="${ac.town}"></p>-->
+       <div class="airport"> <p th:text="${ac.airport1}"/>-><p th:text="${ac.airport2}"/></div>
+       <!-- <p th:text="${ac.distance}"></p>-->
+        <div class="airport">
+        <p th:text="${ac.date2}"/><span>:</span><p th:text="${ac.time2}"/></div>
+        <!--<p th:text="${ac.count_transfer}"></p>
+        <p th:text="${ac.type_ticket}"></p>
+        <p th:text="${ac.price_ticket}"></p>
+        <p th:text="${ac.company}"></p>
+        <p th:text="${ac.max_weight}"></p>-->
+        <a th:href="'/plane/'+${ac.id_flight}">More information</a>
+        <form th:action="'/plane/'+${ac.id_flight}+'/delete'" method="post">
+            <button type="submit">Buy Ticket</button>
+        </form>
+
+<!--
+        <a th:href="'/plane/'+${ac.id_flight}">Buy Ticket</a>
+-->
+
+    </div>
+   <!-- <div>
+        <ul><li>
+            <a href="#" tabindex="-1">Pages</a>
+        </li>
+
+            <li>
+                <a href="#" tabindex="-1">Previous</a>
+            </li>
+            <li>
+                <a href="${/page?page=${p-1}" tabindex="-1">${p}</a>
+            </li>
+        </ul>
+    </div>-->
+    <a href="/plane/add">new ticket</a><br>
+    <a href="/plane/findSomething">Find Ticket</a>
+
+</div>
+
+
+</body>
+<!--<script type="text/javascript">
+    window.onload = setupRefresh;
+    function setupRefresh() {
+        setTimeout("refreshPage();", 5000); // частота обновления в миллисекундах
+    }
+    function refreshPage() {
+        window.location = location.href;
+    }
+</script>-->
+</html>

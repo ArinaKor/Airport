@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Position Report</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <!--<link rel="stylesheet" href="/style/style.css">-->
+  <style>
+    body{
+      background-color: lightcoral;/*
+      background-size: cover;
+      background-repeat: no-repeat;*/
+    }
+
+  </style>
+  <!--<link rel="stylesheet" href="../style/style.css">-->
+
+
+</head>
+<body>
+<div ><!--th:each="ac : ${list}"-->
+  <h2>Current Aircraft Positions</h2>
+
+   <!-- <p th:text="${ac.id_flight}"></p>-->
+    <p th:text="${plane.date_flight}"></p>
+    <p th:text="${plane.time_flight}"></p>
+     <p th:text="${plane.town}"></p>
+    <p th:text="${plane.airport1}"></p>
+     <p th:text="${plane.distance}"></p>
+    <p th:text="${plane.airport2}"></p>
+    <p th:text="${plane.date2}"></p>
+    <p th:text="${plane.time2}"></p>
+    <p th:text="${plane.count_transfer}"></p>
+    <p th:text="${plane.type_ticket}"></p>
+    <p th:text="${plane.price_ticket}"></p>
+    <p th:text="${plane.company}"></p>
+    <p th:text="${plane.max_weight}"></p>
+    <a th:href="'/plane/'+${plane.id_flight}+'/update'">Edit information</a>
+</div>
+
+</body>
+</html>

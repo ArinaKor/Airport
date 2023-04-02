@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<style>
+        body{
+
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>-->
+    <link rel="stylesheet" href="../static/style/style.css">
+
+
+</head>
+<body>
+<div th:each="el:${plane}">
+<form method="post">
+    <input type="text" th:value="${el.date_flight}" name="date_flight">
+    <input type="text" th:value="${el.time_flight}" name="time_flight">
+    <input type="text" th:value="${el.town}" name="town">
+    <input type="text" th:value="${el.airport1}" name="airport1">
+    <input type="number" th:value="${el.distance}" name="distance">
+    <input type="text" th:value="${el.airport2}" name="airport2">
+    <input type="text" th:value="${el.date2}" name="date2">
+    <input type="text" th:value="${el.time2}" name="time2">
+    <input type="number" th:value="${el.count_transfer}" name="count_transfer">
+    <input type="text" th:value="${el.type_ticket}" name="type_ticket">
+    <input type="text" th:value="${el.price_ticket}" name="price_ticket">
+    <input type="text" th:value="${el.company}" name="company">
+    <input type="number" th:value="${el.max_weight}" name="max_weight">
+  <button type="submit">Update</button>
+</form>
+</div>
+</body>
+</html>
