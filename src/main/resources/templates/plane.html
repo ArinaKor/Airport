@@ -30,11 +30,13 @@
         .ticket{
             justify-content: center;
             width: 40%;
-            height: 100px;
+            height: 120px;
 
             border-radius: 15px;
             border: black solid 2px;
             margin-top: 1.5%;
+
+            z-index: 1;
 
         }
         div .airport img{
@@ -74,7 +76,7 @@
             position: absolute;
         }
         .information{
-            padding-top: 3%;
+            padding-top: 4%;
         }
        button {
            background-color: #dfa7aa;
@@ -98,6 +100,15 @@
         button:hover {
             box-shadow: rgba(166, 87, 91, 34) 0 -25px 18px -14px inset,rgba(166, 87, 91, 34) 0 1px 2px,rgba(166, 87, 91, 34) 0 2px 4px,rgba(166, 87, 91, 34) 0 4px 8px,rgba(166, 87, 91, 34) 0 8px 16px,rgba(166, 87, 91, 34) 0 16px 32px;
             transform: scale(1.05) rotate(-1deg);
+        }
+        .bg{
+            z-index: -1;
+            background-color: #9eced9;
+            opacity: 0.7;
+            width: 39.6%;
+            height: 120px;
+            border-radius: 15px;
+            position: absolute;
         }
 
 
@@ -129,7 +140,7 @@
         </div>
     </div>-->
     <div th:each="ac : ${list}" class="ticket">
-
+<div class="bg"></div>
         <div class="buyTicket">
             <p th:text="${ac.id_flight}" class="ID"/>
             <form th:action="'/plane/'+${ac.id_flight}+'/delete'" method="post">
