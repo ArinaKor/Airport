@@ -15,13 +15,102 @@
             font-family: "Sitka Display";
         }
         div .airport{
+
             display: flex;
             flex-direction: row;
-            /*justify-content: center;*/
+            justify-content: center;
             flex-wrap: nowrap;
             align-content: center;
             align-items: center;
 
+            height: 20px;
+
+        }
+        .ticket{
+            justify-content: center;
+            width: 40%;
+            height: 120px;
+
+            border-radius: 15px;
+            border: black solid 2px;
+            margin-top: 1.5%;
+
+            z-index: 1;
+
+        }
+        div .airport img{
+            width: 23px;
+            height: 23px;
+        }
+        .time{
+            font-size: xx-large;
+        }
+        .path2 {
+            stroke-dasharray: 1120;
+            /*   stroke-dashoffset: 800; */
+            animation: draw1 1s linear alternate;
+        }
+
+        @keyframes draw1 {
+            from {
+                stroke-dashoffset: 2240;
+            }
+            to {
+                stroke-dashoffset: 1120;
+            }
+        }
+        p{
+            margin: 0;
+            padding: 0;
+        }
+        .ID{
+            font-size: xx-large;
+        }
+        .buyTicket{
+            float: left;
+            position: absolute;
+        }
+        .more{
+            margin-left: 31%;
+            position: absolute;
+        }
+        .information{
+            padding-top: 4%;
+        }
+        button {
+            background-color: #dfa7aa;
+            border-radius: 15px;
+            box-shadow: rgba(166, 87, 91, 34) 0 -25px 18px -14px inset,rgba(166, 87, 91, 34) 0 1px 2px,rgba(166, 87, 91, 34) 0 2px 4px,rgba(166, 87, 91, 34) 0 4px 8px,rgba(166, 87, 91, 34) 0 8px 16px,rgba(166, 87, 91, 34) 0 16px 32px;
+            color: #623a3b;
+            cursor: pointer;
+            display: inline-block;
+            /*font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;*/
+            padding: 7px 10px;
+            margin-left: 13px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 250ms;
+            border: 0;
+            font-size: 16px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+        button:hover {
+            box-shadow: rgba(166, 87, 91, 34) 0 -25px 18px -14px inset,rgba(166, 87, 91, 34) 0 1px 2px,rgba(166, 87, 91, 34) 0 2px 4px,rgba(166, 87, 91, 34) 0 4px 8px,rgba(166, 87, 91, 34) 0 8px 16px,rgba(166, 87, 91, 34) 0 16px 32px;
+            transform: scale(1.05) rotate(-1deg);
+        }
+        .bg{
+            z-index: -1;
+            background-color: #9eced9;
+            opacity: 0.7;
+            width: 39.6%;
+            height: 120px;
+            border-radius: 15px;
+            position: absolute;
+        }
+        .type{
+            display: none;
         }
     </style>
 </head>
@@ -34,30 +123,30 @@
            <!-- <input type="radio" id="contactChoice1" name="contact" value="1" />
             <label for="contactChoice1">Find By Town</label>-->
 
-            <input type="radio" id="contactChoice2" name="contact" value="1" />
+            <input type="radio" id="contactChoice2" name="contact" onclick="showInput('town')" value="1" /><!---->
             <label for="contactChoice2">Find By Airport1</label>
 
-            <input type="radio" id="contactChoice3" name="contact" value="2" />
+            <input type="radio" id="contactChoice3" name="contact" onclick="showInput('town')" value="2" /><!--onclick="showInput('town')"-->
             <label for="contactChoice3">Find By Airport2</label>
 
-            <input type="radio" id="contactChoice4" name="contact" value="3" />
+            <input type="radio" id="contactChoice4" name="contact" onclick="showInput2('date1', 'date2')" value="3"  /><!--onclick="showInput2('date1', 'date2')"-->
             <label for="contactChoice3">Find By Date1</label>
-            <input type="radio" id="contactChoice5" name="contact" value="4" />
+            <input type="radio" id="contactChoice5" name="contact" onclick="showInput2('time1', 'time2')" value="4" /><!--onclick="showInput2('time1', 'time2')"-->
             <label for="contactChoice3">Find By Time1</label>
         </div>
-        <div>
-            <input type="text" name="town">
+        <div >
+            <input type="text" name="town" id="town" class="type" >
 
-            <label>date1</label>
-            <input type="date" name="date1"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+            <label class="type">date1</label>
+            <input type="date" name="date1" id="date1" value="2018-07-22" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="type" >
 
-            <label>date2</label>
-            <input type="date" name="date2"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
-            <label>date1</label>
-            <input type="time" name="time1"  step="1">
+            <label class="type">date2</label>
+            <input type="date" name="date2" id="date2" value="2018-07-22" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="type">
+            <label class="type">date1</label>
+            <input type="time" name="time1" id="time1" value="00:00:00" step="1" class="type">
 
-            <label>date2</label>
-            <input type="time" name="time2"  step="1">
+            <label class="type">date2</label>
+            <input type="time" name="time2" id="time2" value="00:00:00" step="1" class="type">
         </div>
         <div>
             <button type="submit">Submit</button>
@@ -68,23 +157,77 @@
 <div ><!--th:each="ac : ${list}"-->
 
     <h2>Current Aircraft Positions</h2>
-    <div th:each="ac : ${list}">
-        <p th:text="${ac.id_flight}"></p>
-        <div class="airport">
-            <p th:text="${ac.date_flight}"></p>:
-            <p th:text="${ac.time_flight}"></p>
+    <div th:each="ac : ${list}" class="ticket">
+        <div class="bg"></div>
+        <div class="buyTicket">
+            <p th:text="${ac.id_flight}" class="ID"/>
+            <form th:action="'/plane/'+${ac.id_flight}+'/delete'" method="post">
+                <button type="submit">Buy</button>
+            </form>
         </div>
-        <!-- <p th:text="${ac.town}"></p>-->
-        <div class="airport"> <p th:text="${ac.airport1}"></p>-><p th:text="${ac.airport2}"></p></div>
-        <!-- <p th:text="${ac.distance}"></p>-->
-        <div class="airport">
-            <p th:text="${ac.date2}"></p>:
-            <p th:text="${ac.time2}"></p></div>
-        <a th:href="'/plane/'+${ac.id_flight}">More information</a>
-        <form th:action="'/plane/'+${ac.id_flight}+'/delete'" method="post">
-            <button type="submit">Buy Ticket</button>
-        </form>
-    </div>
+        <div class="information">
+
+            <div class="airport">
+                <p th:text="${ac.time_flight}" class="time"/>
+                <img src="https://img.icons8.com/windows/32/null/airplane-take-off.png" id="first"/><svg version="1.1" id="line_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="4px" y="5px" width="120px" height="5px" xml:space="preserve"></svg>
+                <img src="https://img.icons8.com/windows/32/null/airplane-landing.png" id="second"/><p th:text="${ac.time2}" class="time"/>
+            </div>
+            <div class="airport">
+                <p th:text="${ac.airport1}"/><svg version="1.1" id="line_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="4px" y="5px" width="220px" height="5px" xml:space="preserve">
+                            <path class="path2" fill="#000" stroke-width="7" stroke="#000" d="M0 0 l1120 0"/></svg>
+                <p th:text="${ac.airport2}"/>
+            </div>
+            <div class="airport">
+                <p th:text="${ac.date_flight}"/><svg version="1.1" id="line_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="4px" y="5px" width="120px" height="5px" xml:space="preserve"></svg>
+                <p th:text="${ac.date2}"/>
+            </div>
+            <a th:href="'/plane/'+${ac.id_flight}" class="more">More information</a>
+        </div>
+    </div><br><br>
+
+    <a href="/plane/add">new ticket</a><br>
+    <a href="/plane/findSomething">Find Ticket</a>
+
+</div>
 </div>
 </body>
+<script>
+    function showInput(inputId) {
+        // Получаем элемент input по его id
+        var input = document.getElementById(inputId);
+
+        // Если radiobutton выбран, то показываем input
+        if (input.style.display === "none") {
+            input.style.display = "block";
+        }
+        // Иначе скрываем input
+        else {
+            input.style.display = "none";
+        }
+    }
+    function showInput2(inputId, input2) {
+        // Получаем элемент input по его id
+        var input = document.getElementById(inputId);
+        var inputT = document.getElementById(input2);
+        // Если radiobutton выбран, то показываем input
+        if (input.style.display === "none" && inputT.style.display === "none") {
+
+
+                input.style.display = "block";
+            inputT.style.display = "block";
+        }
+        // Иначе скрываем input
+        else {
+            input.style.display = "none";
+            inputT.style.display = "none";
+        }
+    }
+    function checkNull(text){
+        var input = document.getElementById(text);
+        if (document.getElementById("time1").value == ''){
+            input = '';
+        }
+
+    }
+</script>
 </html>

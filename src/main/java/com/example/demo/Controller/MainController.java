@@ -123,7 +123,8 @@ public class MainController /*implements Observed*/ {
     }
 
    @PostMapping("/plane/findSomething")
-   public String findByTown(@RequestParam Time time1, @RequestParam Time time2, @RequestParam Date date1, @RequestParam Date date2,@RequestParam String contact, @RequestParam String town, Model model){
+   public String findByTown(@RequestParam(required = false) String contact, @RequestParam String town,@RequestParam(value="time1", required = false) Time time1,
+                            @RequestParam(value="time2", required = false) Time time2, @RequestParam(value="date1", required = false) Date date1, @RequestParam(value="date1", required = false) Date date2, Model model){
        List<Plane> list = null;
        if(contact.equals("1")){
            list = planeRepository.findByAirport1(town);
