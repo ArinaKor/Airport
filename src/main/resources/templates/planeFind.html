@@ -11,6 +11,7 @@
       background-repeat: no-repeat;
       background-size: cover;
       font-family: "Sitka Display";
+      font-size: large;
     }
     /*-=-=-=-=-=-=-=-=-=-=-=*/
     #neubar {
@@ -40,6 +41,63 @@
     }
     a.navbar-brand {
       color: #454545
+    }
+    .bg{
+      z-index: -1;
+      background-color: #c9e9ff;
+      opacity: 0.7;
+      width: 100%;
+      height: 310px;
+      border-radius: 15px;
+      position: absolute;
+      margin-top: -0.15%;
+
+    }
+    .info{
+      font-family: "Sitka Display";
+      z-index: 1;
+      justify-content: center;
+      width: 40%;
+      height: 312px;
+      margin-left: 4%;
+      border-radius: 15px;
+      border: #009dda solid 2px;
+      margin-top: 1.5%;
+      float: left;
+      position: absolute;
+    }
+    div .airport2{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-wrap: nowrap;
+      align-content: center;
+      align-items: flex-start;
+      margin-top: 20%;
+      height: 20px;
+      margin-left: 55%;
+      float: right;
+      position: absolute;
+
+    }
+    div .airport{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-wrap: nowrap;
+      align-content: center;
+      align-items: flex-start;
+      margin-top: 20%;
+      height: 20px;
+      margin-left: 15%;
+      float: right;
+      position: absolute;
+
+    }
+    h2{
+      text-align: center;
     }
 
   </style>
@@ -75,22 +133,27 @@
     </div>
   </div>
 </nav>
-<div ><!--th:each="ac : ${list}"-->
-  <h2>Current Aircraft Positions</h2>
+<div class="info"><!--th:each="ac : ${list}"-->
+  <div class="bg"></div>
+  <h2 th:text="'Ticket number '+${plane.id_flight}"></h2>
 
    <!-- <p th:text="${ac.id_flight}"></p>-->
-    <p th:text="${plane.date_flight}"></p>
-    <p th:text="${plane.time_flight}"></p>
-    <p th:text="${plane.airport1}"></p>
-     <p th:text="${plane.distance}"></p>
-    <p th:text="${plane.airport2}"></p>
-    <p th:text="${plane.date2}"></p>
-    <p th:text="${plane.time2}"></p>
-    <p th:text="${plane.count_transfer}"></p>
-    <p th:text="${plane.type_ticket}"></p>
-    <p th:text="${plane.price_ticket}"></p>
-    <p th:text="${plane.company}"></p>
-    <p th:text="${plane.max_weight}"></p>
+  <div class="airport">
+    <p th:text="'Дата вылета: '+${plane.date_flight}"/>
+    <p th:text="'Город вылета: '+${plane.airport1}"/>
+    <p th:text="'Дата прилета: '+${plane.date2}"/>
+    <p th:text="'Расстояние: '+${plane.distance}"/>
+    <p th:text="'Тип билета: '+${plane.type_ticket}"/>
+    <p th:text="'Авиакомпания: '+${plane.company}"/>
+  </div>
+  <div class="airport2">
+    <p th:text="'Время вылета: '+${plane.time_flight}"/>
+    <p th:text="'Город прилета: '+${plane.airport2}"/>
+    <p th:text="'Время прилета: '+${plane.time2}"/>
+    <p th:text="'Количество пересадок: '+${plane.count_transfer}"/>
+    <p th:text="'Цена билета: '+${plane.price_ticket}"/>
+    <p th:text="'Максимальный вес багажа: '+${plane.max_weight}"/>
+  </div>
    <!-- <a >Edit information</a>-->
 </div>
 

@@ -320,7 +320,7 @@
 <!--=-=-=-=-=-=-====-=-===============================================================================================-->
 <form action="/plane/findSomething" method="post">
     <fieldset>
-        <legend>Please select your preferred contact method:</legend>
+        <legend>Please select for search:</legend>
         <div class="btn-group ">
            <!-- <input type="radio" id="contactChoice1" name="contact" value="1" />
             <label for="contactChoice1">Find By Town</label>-->
@@ -360,10 +360,11 @@
         </div>
     </fieldset>
 </form>
-<h1 th:text="${notFound}"></h1>
+
 <div ><!--th:each="ac : ${list}"-->
 
-    <h2>Current Aircraft Positions</h2>
+    <h2>That is all we could find</h2>
+    <h1 th:text="${notFound}"></h1>
     <div th:each="ac : ${list}" class="ticket">
         <div class="bg"></div>
         <div class="buyTicket">
@@ -436,13 +437,6 @@
             input.style.display = "none";
             inputT.style.display = "none";
         }
-    }
-    function checkNull(text){
-        var input = document.getElementById(text);
-        if (document.getElementById("time1").value == ''){
-            input = '';
-        }
-
     }
 
 </script>
