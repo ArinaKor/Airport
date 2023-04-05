@@ -8,20 +8,158 @@
 
   <style>
     body{
-      background-image: url("https://data.terabox.com/thumbnail/388a93206118d514f7ed47361be21fab?fid=4401312576584-250528-863061987675297&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-SXM5nSbHJQVkd13bSU7Vo98wUcs%3d&expires=8h&chkbd=0&chkv=0&dp-logid=9089989049771077833&dp-callid=0&time=1680595200&size=c1536_u864&quality=90&vuk=4401312576584&ft=image&autopolicy=1");
+        background-image: url("https://data.terabox.com/thumbnail/388a93206118d514f7ed47361be21fab?fid=4401312576584-250528-863061987675297&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-6adSESj%2bGqBoRw9fFhEsC7vxgeE%3d&expires=8h&chkbd=0&chkv=0&dp-logid=9098171646772900194&dp-callid=0&time=1680624000&size=c1536_u864&quality=90&vuk=4401312576584&ft=image&autopolicy=1");
 
       background-repeat: no-repeat;
       background-size: cover;
       font-family: "Sitka Display";
     }
     div .airport{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-wrap: nowrap;
+      align-content: center;
+      align-items: flex-end;
+      margin-top: 0.4%;
+      height: 20px;
+
+    }
+    div .airport2{
+
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      flex-wrap: nowrap;
+      align-content: center;
+      align-items: flex-end;
+      margin-top: 0.4%;
+      height: 20px;
+      width: 150px;
+
+    }
+    div .airport3{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-wrap: nowrap;
+      align-content: center;
+      align-items: flex-start;
+      margin-top: 0.4%;
+      height: 20px;
+
+    }
+    .ticket{
+      justify-content: center;
+      width: 40%;
+      height: 130px;
+
+      border-radius: 15px;
+      border: #009dda solid 2px;
+      margin-top: 1.5%;
+
+      z-index: 1;
+
+    }
+    div .airport img{
+      width: 23px;
+      height: 23px;
+    }
+    .time{
+      font-size: xx-large;
+    }
+    .path2 {
+      stroke-dasharray: 1120;
+      /*   stroke-dashoffset: 800; */
+      animation: draw1 1s linear alternate;
+    }
+
+    @keyframes draw1 {
+      from {
+        stroke-dashoffset: 1120;
+      }
+      to {
+        stroke-dashoffset: 2240;
+      }
+    }
+    p{
+      margin: 0;
+      padding: 0;
+    }
+    .ID{
+      font-size: xx-large;
+    }
+    .buyTicket{
+      float: left;
+      position: absolute;
+      margin-left: 0.7%;
+      margin-top: 0.7%;
+    }
+    .more{
+      margin-left: 31%;
+      margin-top: 2.3%;
+      position: absolute;
+      color: #017ebf;
+    }
+    .information{
+      margin-top: 7.5%;
       display: flex;
       flex-direction: row;
-      /*justify-content: center;*/
+      justify-content: center;
       flex-wrap: nowrap;
       align-content: center;
       align-items: center;
-
+      margin-left: 15%;
+    }
+    .shine-button {
+      text-decoration: none;
+      display: inline-block;
+      padding: 5px 20px;
+      margin: 10px 20px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #009dda;
+      border-radius: 8px;
+      font-family: "Sitka Display";
+      color: #009dda;
+      transition: .2s ease-in-out;
+      font-size: large;
+    }
+    .shine-button:before {
+      content: "";
+      background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      top: -8px;
+      left: -75px;
+      transform: skewX(-45deg);
+    }
+    .shine-button:hover {
+      background: #009dda;
+      color: #c9e9ff;
+    }
+    .shine-button:hover:before {
+      left: 150px;
+      transition: .5s ease-in-out;
+    }
+    .bg{
+      z-index: -1;
+      background-color: #c9e9ff;
+      opacity: 0.7;
+      width: 39.6%;
+      height: 130px;
+      border-radius: 15px;
+      position: absolute;
+    }
+    #date{
+      margin-top: 0px;
+    }
+    svg{
+      position: absolute;
+      margin-top: 0.15%;
     }
   </style>
 </head>

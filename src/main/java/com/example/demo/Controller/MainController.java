@@ -27,6 +27,7 @@ public class MainController /*implements Observed*/ {
     @GetMapping("/plane")
     public String getCurrentAircraftPositions(Model model) {
         List<Plane> list = this.planeRepository.findAll();
+
         model.addAttribute("list", list);
         return "plane";
     }
@@ -62,14 +63,14 @@ public class MainController /*implements Observed*/ {
     @GetMapping("/plane/{id_flight}/update")
     public String update(@PathVariable(value = "id_flight") int id_flight, Model model){
         Plane plane = this.planeService.findByID(id_flight);
-        if(!planeRepository.existsById(id_flight)){
+       /* if(!planeRepository.existsById(id_flight)){
             return "redirect:/plane";
-        }
+        }*/
         model.addAttribute("plane", plane);
         return "editPlane";
     }
     @RequestMapping("/plane/{id_flight}/update")
-    public String update(@PathVariable(value = "id_flight") int id_flight, @RequestParam Date date_flight, @RequestParam Time time_flight, @RequestParam String town,
+    public String update(@PathVariable(value = "id_flight") int id_flight, @RequestParam Date date_flight, @RequestParam Time time_flight,
                          @RequestParam String airport1, @RequestParam int distance, @RequestParam String airport2, @RequestParam Date date2,
                          @RequestParam Time time2, @RequestParam int count_transfer, @RequestParam String type_ticket,
                          @RequestParam float price_ticket, @RequestParam String company, @RequestParam int max_weight, Model model){
@@ -77,7 +78,7 @@ public class MainController /*implements Observed*/ {
        // model.addAttribute("plane", plane);
         plane.setDate_flight(date_flight);
         plane.setTime_flight(time_flight);
-        plane.setTown(town);
+
         plane.setAirport1(airport1);
         plane.setDistance(distance);
         plane.setAirport2(airport2);
@@ -96,14 +97,14 @@ public class MainController /*implements Observed*/ {
         return "addPlane";
     }
     @PostMapping("/plane/add")
-    public String addNew(@RequestParam Date date_flight, @RequestParam Time time_flight, @RequestParam String town,
+    public String addNew(@RequestParam Date date_flight, @RequestParam Time time_flight,
                          @RequestParam String airport1, @RequestParam int distance, @RequestParam String airport2, @RequestParam Date date2,
                          @RequestParam Time time2, @RequestParam int count_transfer, @RequestParam String type_ticket,
                          @RequestParam float price_ticket, @RequestParam String company, @RequestParam int max_weight, Model model){
         Plane plane = new Plane();
         plane.setDate_flight(date_flight);
         plane.setTime_flight(time_flight);
-        plane.setTown(town);
+
         plane.setAirport1(airport1);
         plane.setDistance(distance);
         plane.setAirport2(airport2);
@@ -123,8 +124,8 @@ public class MainController /*implements Observed*/ {
     }
 
    @PostMapping("/plane/findSomething")
-   public String findByTown(@RequestParam(required = false) String contact, @RequestParam String town,@RequestParam(value="time1", required = false) Time time1,
-                            @RequestParam(value="time2", required = false) Time time2, @RequestParam(value="date1", required = false) Date date1, @RequestParam(value="date1", required = false) Date date2, Model model){
+   public String findByTown(@RequestParam(required = false) String contact, @RequestParam String town,@RequestParam Time time1,
+                            @RequestParam Time time2, @RequestParam Date date1, @RequestParam Date date2, Model model){
        List<Plane> list = null;
        if(contact.equals("1")){
            list = planeRepository.findByAirport1(town);

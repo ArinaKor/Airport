@@ -27,8 +27,6 @@ public class Plane  {
     private Date date_flight;
     @Column(name="time_flight")
     private Time time_flight;
-    @Column(name="town")
-    private String town;
     @Column(name="airport1")
     private String airport1;
     @Column(name="distance")

@@ -22,7 +22,7 @@ public interface PlaneRepository extends JpaRepository<Plane, Integer> {
     @Query("from Plane pl WHERE pl.airport1 = :airport1")
     List<Plane> findByAirport1(String airport1);
 
-    @Query("from Plane pl WHERE pl.airport1 = :airport2")
+    @Query("from Plane pl WHERE pl.airport2 = :airport2")
     List<Plane> findByAirport2(String airport2);
     @Query("from Plane pl Where pl.date_flight>=:date1 and pl.date_flight<=:date2")
     List<Plane> findByDate1(Date date1, Date date2);
