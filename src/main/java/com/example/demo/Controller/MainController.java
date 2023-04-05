@@ -6,6 +6,7 @@ import com.example.demo.observer.Observer;
 import com.example.demo.observer.Subscriber;
 import com.example.demo.repository.PlaneRepository;
 import com.example.demo.service.PlaneService;
+import com.example.demo.singleton.SingletonEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,15 @@ public class MainController /*implements Observed*/ {
      private PlaneRepository planeRepository;
     @Autowired
     private PlaneService planeService;
-
+    SingletonEnum se = SingletonEnum.INSTANCE;
+    List<Plane> list;
     @GetMapping("/plane")
-    public String getCurrentAircraftPositions(Model model) {
-        List<Plane> list = this.planeRepository.findAll();
+    public String getCurrentAircraftPositions(Model model)
+    {
+        /*List<Plane> list = this.planeRepository.findAll1();*/
+
+        list = se.getDbDataField();
+        list = planeRepository.findAll1();
 
         model.addAttribute("list", list);
         return "plane";
@@ -126,7 +132,7 @@ public class MainController /*implements Observed*/ {
    @PostMapping("/plane/findSomething")
    public String findByTown(@RequestParam(required = false) String contact, @RequestParam String town,@RequestParam Time time1,
                             @RequestParam Time time2, @RequestParam Date date1, @RequestParam Date date2, Model model){
-       List<Plane> list = null;
+       list = se.getDbDataField();
        if(contact.equals("1")){
            list = planeRepository.findByAirport1(town);
        } else if (contact.equals("2")) {
