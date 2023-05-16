@@ -144,6 +144,7 @@ public class MainController /*implements Observed*/ {
        }
        if(list.isEmpty()){
            String notFound = "We can not found this!!!";
+
            model.addAttribute("notFound", notFound);
            return "planeFindBySomething";
        }
